@@ -3,7 +3,7 @@
 2. OpenJdk 17.0.8
 3. RabbitMQ Management server either on docker(rabbitmq:3.9.29-management-alpine) or installer should be running on tcp port 
 5672 with username and password as `guest` (For more details check the `src/main/resources/application.properties`).
-4. RabbitMQ has the Exchanges and Queues created as mentioned in the Application Run Section.
+4. RabbitMQ Exchanges and Queues will be created as mentioned in the Application Run Section.
 
 ## gRPC proto files in path
 1. `src/main/proto/*`
@@ -34,7 +34,7 @@ final application jar file into `target/` folder
 **Note:**
 1. For first time Run the Order service in order to create the exchanges and queues automatically on rabbitMQ.
 2. RabbitMQ exchanges and queues will be created on Order Service Startup.
-3. After this you can start the rest of the services.
+3. After this you can start rest of the services.
 
 Run the below commands in each service base directory to start each application:
 1. `java -jar target/order-service-0.0.1-SNAPSHOT.jar`
