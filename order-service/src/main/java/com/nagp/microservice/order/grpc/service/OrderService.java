@@ -10,6 +10,9 @@ import net.devh.boot.grpc.server.service.GrpcService;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
+/**
+ * gRPC service class implementation for placing and updating order requests.
+ */
 @GrpcService
 public class OrderService extends OrderServiceGrpc.OrderServiceImplBase {
 
@@ -17,6 +20,13 @@ public class OrderService extends OrderServiceGrpc.OrderServiceImplBase {
   @Autowired
   private RabbitTemplate rabbitTemplate;
 
+  /**
+   * Placing Order via gRPC and
+   * publishing placeOrder events to rabbitMQ via Fanout Exchange.
+   *
+   * @param request create order request
+   * @param responseObserver responseObserver
+   */
   @Override
   public void placeOrder(OrderProto.Order request, StreamObserver<Int64Value> responseObserver) {
     long orderId = atomicLong.incrementAndGet();
@@ -27,7 +37,13 @@ public class OrderService extends OrderServiceGrpc.OrderServiceImplBase {
     responseObserver.onCompleted();
   }
 
-
+  /**
+   * Updating Order via gRPC and
+   * publishing updateOrder events to rabbitMQ via Topic exchange.
+   *
+   * @param orderId orderId
+   * @param responseObserver responseObserver
+   */
   @Override
   public void updateOrder(Int64Value orderId, StreamObserver<Int64Value> responseObserver) {
     String message = "Order " + orderId.getValue() + " is updated successfully";

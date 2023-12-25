@@ -6,6 +6,10 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/**
+ *
+ * Notification Service 1 listening message for place order events
+ */
 @SpringBootApplication
 public class NotificationService1Application {
 	Logger logger = LoggerFactory.getLogger(NotificationService1Application.class);
@@ -16,6 +20,10 @@ public class NotificationService1Application {
 		SpringApplication.run(NotificationService1Application.class, args);
 	}
 
+	/**
+	 * Listing message from the Fanout Exchange for order creation event.
+	 * @param message queue message
+	 */
 	@RabbitListener(queues = {FANOUT_PLACE_ORDER_QUEUE_NAME})
 	public void receiveMessageFromFanout(String message) {
 		logger.info("Received from fanout exchange: " + message);

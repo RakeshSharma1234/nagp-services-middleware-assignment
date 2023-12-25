@@ -9,6 +9,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+/**
+ * gRPC client for Order Service
+ */
 @Service
 public class OrderClient {
 
@@ -17,6 +20,12 @@ public class OrderClient {
   @GrpcClient("order-service-grpc")
   OrderServiceGrpc.OrderServiceBlockingStub stub;
 
+  /**
+   * Placing order via gRPC
+   *
+   * @param order place order request
+   * @return orderId
+   */
   public Int64Value placeOrder(OrderProto.Order order) {
     try {
       return stub.placeOrder(order);
@@ -26,6 +35,12 @@ public class OrderClient {
     }
   }
 
+  /**
+   * Updating order via gRPC
+   *
+   * @param orderId the orderId
+   * @return orderId
+   */
   public Int64Value updateOrder(Int64Value orderId) {
     try {
       return stub.updateOrder(orderId);

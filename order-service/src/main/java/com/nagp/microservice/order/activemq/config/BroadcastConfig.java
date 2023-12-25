@@ -8,6 +8,10 @@ import org.springframework.amqp.core.TopicExchange;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * This class used for keeping the configuration of binding queue and exchange
+ * in rabbitMQ and used by the Order Service.
+ */
 @Configuration
 public class BroadcastConfig {
 
