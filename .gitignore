@@ -1,0 +1,48 @@
+HELP.md
+target/
+*/target/**
+.mvn
+mvnw
+mvnw.cmd
+
+*.zip
+
+### STS ypath
+        #.project
+        #.settings
+        #.springBeans
+        #.sts4-cache###
+.apt_generated
+.classpath
+.factor
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+out
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+
+## LOGS ##
+/log/
+log/
+*.log
+/.metadata/
+
+### macOS ###
+*.DS_Store
+.AppleDouble
+.LSOverride

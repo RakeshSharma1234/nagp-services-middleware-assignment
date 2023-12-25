@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package model;
+
+option java_package = "com.nagp.services.grpc.order.model";
+option java_outer_classname = "OrderProto";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/wrappers.proto";
+
+service OrderService {
+  rpc updateOrder(google.protobuf.Int64Value) returns (google.protobuf.Int64Value) {}
+  rpc placeOrder(Order) returns (google.protobuf.Int64Value) {}
+}
+
+message Order {
+  int64 productId = 1;
+  int64 quantity = 2;
+  double price = 3;
+}
