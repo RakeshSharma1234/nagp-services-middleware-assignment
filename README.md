@@ -32,13 +32,13 @@ final application jar file into `target/` folder
 
 ### 2. Run the application
 **Note:**
-1. For first time Run the Product and Order service in order to create the exchanges and queues automatically on rabbitMQ.
-2. After this you can start the Notification-1 and Notification-2 services.
-3. RabbitMQ exchanges and queues will be created on Order Service Startup.
+1. For first time Run the Order service in order to create the exchanges and queues automatically on rabbitMQ.
+2. RabbitMQ exchanges and queues will be created on Order Service Startup.
+3. After this you can start the rest of the services.
 
 Run the below commands in each service base directory to start each application:
-1. `java -jar target/product-service-0.0.1-SNAPSHOT.jar`
-2. `java -jar target/order-service-0.0.1-SNAPSHOT.jar`
+1. `java -jar target/order-service-0.0.1-SNAPSHOT.jar`
+2. `java -jar target/product-service-0.0.1-SNAPSHOT.jar`
 3. `java -jar target/notification-service-1-0.0.1-SNAPSHOT.jar`
 4. `java -jar target/notification-service-2-0.0.1-SNAPSHOT.jar`
 
