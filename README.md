@@ -6,12 +6,12 @@
 
 ## Application Compile, Build and Run
 
-### Compile and Build
+### 1. Compile and Build
 Run `mvn clean install` in each service will compile the code and generate the 
 grpc proto buffers stub classes into ``src/main/generated/`` and build the 
 final application jar file into `target/` folder
 
-### Run the application
+### 2. Run the application
 **Note:** 
 1. For first time Run the Product and Order service only and hit the curl request for either placeOrder or updateOrder (as given in the last of this README file)
 in order to create the exchanges and queues automatically on rabbitMQ. 
@@ -43,7 +43,7 @@ For each microservice under path `src/main/resources/application.properties`
 1. com.nagp.place-order.fanout.exchange
 2. com.nagp.update-order.topic.exchange
 
-## CURL Requests
+## Product Service cURL Requests
 
 ### Get Product List
 curl --location 'http://localhost:8081/product/list'
