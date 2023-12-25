@@ -10,7 +10,7 @@ Assumptions:
 8. Order Service is exposed to product service via gRPC stubs.
 9. Product Service is exposed via REST APIs.
 10. Notification-1 and Notification-2 services will be listening to the RabbitMQ queue for Order Service events.
-11. Spring Boot starters used for integrating the gRPC and RabbitMQ within the application.
+11. Spring Boot starters are used for integrating the gRPC and RabbitMQ within the application.
 
 
 Application Flow:
