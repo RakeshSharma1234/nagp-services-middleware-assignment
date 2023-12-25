@@ -6,20 +6,20 @@ Assumptions:
 4. Database integration is out of scope.
 5. The product list is maintained in a static JSON file.
 6. The RabbitMQ server is up and running on port 5672 with username and password as guest.
-7. Spring Boot, Java, and Maven are used as part of the implementation
-8. Order Service is exposed to product service via gRPC stubs.
-9. Product Service is exposed via REST APIs.
-10. Notification-1 and Notification-2 services will be listening to the RabbitMQ queue for Order Service events.
-11. Spring Boot starters are used for integrating the gRPC and RabbitMQ within the application.
+7. RabbitMQ has the exchanges and queues created as mentioned in the README file.
+8. Spring Boot, Java, and Maven are used as part of the implementation
+9. Order Service is exposed to product service via gRPC stubs.
+10. Product Service is exposed via REST APIs.
+11. Notification-1 and Notification-2 services will be listening to the RabbitMQ queue for Order Service events.
+12. Spring Boot starters are used for integrating the gRPC and RabbitMQ within the application.
 
 
 Application Flow:
 
              REST Calls                     gRPC Calls                       Publish Events
-         (place/update order)             (place/update order)             (place/update order)            
+         (place/update order)             (place/update order)             (place/update order)
 cURL Request ----------->ProductService ---------------------->OrderService -----------------------> RabbitMQ (Topic and Fanout Exchange)
 
-	  
-	         listening                                      listening
-Notification-1<--------- RabbitMQ (Topic and Fanout Queues) --------> Notification-2
 
+	         listening                                      listening
+Notification-1	<--------- RabbitMQ (Topic and Fanout Queues) --------> Notification-2
