@@ -1,7 +1,7 @@
 package com.nagp.microservice.order.grpc.service;
 
 import com.google.protobuf.Int64Value;
-import com.nagp.microservice.order.activemq.config.RabbitMQConfig;
+import com.nagp.microservice.order.rabbitmq.config.RabbitMQConfig;
 import com.nagp.services.grpc.order.model.OrderProto;
 import com.nagp.services.grpc.order.model.OrderServiceGrpc;
 import io.grpc.stub.StreamObserver;

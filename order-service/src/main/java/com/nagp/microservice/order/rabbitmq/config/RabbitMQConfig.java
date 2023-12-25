@@ -1,4 +1,4 @@
-package com.nagp.microservice.order.activemq.config;
+package com.nagp.microservice.order.rabbitmq.config;
 
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.Declarables;
