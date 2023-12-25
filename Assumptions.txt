@@ -6,12 +6,13 @@ Assumptions:
 4. Database integration is out of scope.
 5. The product list is maintained in a static JSON file.
 6. The RabbitMQ server is up and running on port 5672 with username and password as guest.
-7. RabbitMQ has the exchanges and queues created as mentioned in the README file.
+7. RabbitMQ exchanges and queues will be created on Order Service Startup.
 8. Spring Boot, Java, and Maven are used as part of the implementation
 9. Order Service is exposed to product service via gRPC stubs.
 10. Product Service is exposed via REST APIs.
 11. Notification-1 and Notification-2 services will be listening to the RabbitMQ queue for Order Service events.
 12. Spring Boot starters are used for integrating the gRPC and RabbitMQ within the application.
+13. Docker image "rabbitmq:3.9.29-management-alpine" has been used for the local demo.
 
 
 Application Flow:

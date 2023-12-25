@@ -1,7 +1,7 @@
 ## Prerequisite
 1. Maven build tool latest
 2. OpenJdk 17.0.8
-3. RabbitMQ Management server either on docker or installer should be running on tcp port 
+3. RabbitMQ Management server either on docker(rabbitmq:3.9.29-management-alpine) or installer should be running on tcp port 
 5672 with username and password as `guest` (For more details check the `src/main/resources/application.properties`).
 4. RabbitMQ has the Exchanges and Queues created as mentioned in the Application Run Section.
 
@@ -17,7 +17,7 @@ For each microservice under path `src/main/resources/application.properties`
 ### RabbitMQ Queues
 1. com.nagp.place-order.fanout.queue1
 2. com.nagp.place-order.fanout.queue2
-3. com.nagp.update-order.topic.queue
+3. com.nagp.update-order.topic.queue (Routing Key for this queue is *)
 
 ### RabbitMQ Exchanges
 1. com.nagp.place-order.fanout.exchange
@@ -32,9 +32,9 @@ final application jar file into `target/` folder
 
 ### 2. Run the application
 **Note:**
-1. For first time Run the Product and Order service only and hit the curl request for either placeOrder or updateOrder (as given in the last of this README file)
-   in order to create the exchanges and queues automatically on rabbitMQ.
+1. For first time Run the Product and Order service in order to create the exchanges and queues automatically on rabbitMQ.
 2. After this you can start the Notification-1 and Notification-2 services.
+3. RabbitMQ exchanges and queues will be created on Order Service Startup.
 
 Run the below commands in each service base directory to start each application:
 1. `java -jar target/product-service-0.0.1-SNAPSHOT.jar`
