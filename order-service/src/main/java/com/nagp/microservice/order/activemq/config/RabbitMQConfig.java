@@ -13,9 +13,9 @@ import org.springframework.context.annotation.Configuration;
  * in rabbitMQ and used by the Order Service.
  */
 @Configuration
-public class BroadcastConfig {
+public class RabbitMQConfig {
 
-    private static final boolean NON_DURABLE = false;
+    private static final boolean DURABLE = true;
     public final static String FANOUT_PLACE_ORDER_QUEUE_1_NAME = "com.nagp.place-order.fanout.queue1";
 
     public final static String FANOUT_PLACE_ORDER_QUEUE_2_NAME = "com.nagp.place-order.fanout.queue2";
@@ -25,8 +25,8 @@ public class BroadcastConfig {
 
     @Bean
     public Declarables topicBindings() {
-        Queue topicQueue = new Queue(TOPIC_UPDATE_ORDER_QUEUE_NAME, NON_DURABLE);
-        TopicExchange topicExchange = new TopicExchange(TOPIC_EXCHANGE_NAME, NON_DURABLE, false);
+        Queue topicQueue = new Queue(TOPIC_UPDATE_ORDER_QUEUE_NAME, DURABLE);
+        TopicExchange topicExchange = new TopicExchange(TOPIC_EXCHANGE_NAME, DURABLE, false);
         return new Declarables(topicQueue, topicExchange, BindingBuilder
           .bind(topicQueue)
           .to(topicExchange)
@@ -35,10 +35,10 @@ public class BroadcastConfig {
 
     @Bean
     public Declarables fanoutBindings() {
-        Queue fanoutQueue1 = new Queue(FANOUT_PLACE_ORDER_QUEUE_1_NAME, NON_DURABLE);
-        Queue fanoutQueue2 = new Queue(FANOUT_PLACE_ORDER_QUEUE_2_NAME, NON_DURABLE);
+        Queue fanoutQueue1 = new Queue(FANOUT_PLACE_ORDER_QUEUE_1_NAME, DURABLE);
+        Queue fanoutQueue2 = new Queue(FANOUT_PLACE_ORDER_QUEUE_2_NAME, DURABLE);
 
-        FanoutExchange fanoutExchange = new FanoutExchange(FANOUT_EXCHANGE_NAME, NON_DURABLE, false);
+        FanoutExchange fanoutExchange = new FanoutExchange(FANOUT_EXCHANGE_NAME, DURABLE, false);
 
         return new Declarables(fanoutQueue1, fanoutQueue2, fanoutExchange, BindingBuilder
           .bind(fanoutQueue1)

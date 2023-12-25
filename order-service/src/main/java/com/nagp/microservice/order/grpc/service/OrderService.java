@@ -1,7 +1,7 @@
 package com.nagp.microservice.order.grpc.service;
 
 import com.google.protobuf.Int64Value;
-import com.nagp.microservice.order.activemq.config.BroadcastConfig;
+import com.nagp.microservice.order.activemq.config.RabbitMQConfig;
 import com.nagp.services.grpc.order.model.OrderProto;
 import com.nagp.services.grpc.order.model.OrderServiceGrpc;
 import io.grpc.stub.StreamObserver;
@@ -16,7 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 @GrpcService
 public class OrderService extends OrderServiceGrpc.OrderServiceImplBase {
 
-  private AtomicLong atomicLong = new AtomicLong(1000);
+  private final AtomicLong atomicLong = new AtomicLong(1000);
   @Autowired
   private RabbitTemplate rabbitTemplate;
 
@@ -32,7 +32,7 @@ public class OrderService extends OrderServiceGrpc.OrderServiceImplBase {
     long orderId = atomicLong.incrementAndGet();
     String message = String.format("New Order is placed for product:%d with quantity:%d and price:%.2f and generated OrderNumber:%d",
         request.getProductId(),request.getQuantity(),request.getPrice(),orderId);
-    rabbitTemplate.convertAndSend(BroadcastConfig.FANOUT_EXCHANGE_NAME, "", message);
+    rabbitTemplate.convertAndSend(RabbitMQConfig.FANOUT_EXCHANGE_NAME, "", message);
     responseObserver.onNext(Int64Value.of(orderId));
     responseObserver.onCompleted();
   }
@@ -47,7 +47,7 @@ public class OrderService extends OrderServiceGrpc.OrderServiceImplBase {
   @Override
   public void updateOrder(Int64Value orderId, StreamObserver<Int64Value> responseObserver) {
     String message = "Order " + orderId.getValue() + " is updated successfully";
-    rabbitTemplate.convertAndSend(BroadcastConfig.TOPIC_EXCHANGE_NAME, "updated", message);
+    rabbitTemplate.convertAndSend(RabbitMQConfig.TOPIC_EXCHANGE_NAME, "updated", message);
     responseObserver.onNext(orderId);
     responseObserver.onCompleted();
   }
